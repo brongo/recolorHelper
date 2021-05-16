@@ -59,7 +59,7 @@ If used on a folder/directory, it will search for .decl files **recursively**. T
 
 1. Drag & drop the .decl file -or- folder you want to modify onto "recolorHelper.exe"
 2. If you drag & drop a single file, it will be edited automatically. No output will be shown.
-3. If you drag * drop a folder, manual confirmation will be required. Follow the instructions in the command prompt.
+3. If you drag & drop a folder, manual confirmation will be required. Follow the instructions in the command prompt.
 
 ### Option 2: Command Line
  
