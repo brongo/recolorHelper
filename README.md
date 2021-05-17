@@ -68,7 +68,7 @@ recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* 
 
 ## Troubleshooting
 
-These files may trigger anti-virus warnings. However, they are safe to download and run.
+The .exe file may trigger an anti-virus warning, but it is safe to download and run.
 
 **If you experience problems when using recolorHelper:** Please first read the text in the command prompt/console window. Make a note of any errors or instructions. Most error messages will include a specific reason for the problem and will tell you how to fix it.
 
