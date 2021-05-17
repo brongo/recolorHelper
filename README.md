@@ -2,7 +2,7 @@
 
 recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
 
-It will automatically reset certain .decl color values to 0.0001, eliminating the tedious work of going through each .decl file and changing these line-by-line. **Some manual work is still required.** See the section titled "*What this tool DOES NOT do.*"
+It will automatically reset .decl color values to 0.0001, eliminating the tedious work of going through each .decl file and changing these line-by-line. **Some manual work is still required.** See the section titled "*What this tool DOES NOT do.*"
 
 This tool was designed/tested for weapons and pickups only, but it may work on other things with the same color types.
 
