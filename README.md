@@ -57,7 +57,7 @@ FX_PARTICLE			   // see below
 ```
 
 Color types used with FX_PARTICLE only:
-(Only used on files in the /decls/particle or /decls/particlestage directories)
+**(Files must be in /decls/particle or /decls/particlestage directories)**
 
 ```
 color
