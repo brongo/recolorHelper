@@ -1,4 +1,4 @@
-# recolorHelper v0.2.0 by SamPT
+# recolorHelper v0.2 by SamPT
 
 recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
 
