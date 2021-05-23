@@ -12,9 +12,29 @@ All notable changes to this project will be documented in this file.
   3. FX_RIBBON_2
   4. FX_SCREEN_SHAKE
   ```
-- Added support for **standard types:** emissiveTint, explosionGradient, explosionGradient2, explosionGradient3, emissiveMaskColor, emissiveMaskColor2, lightColor, surfaceColor2.
-- Added support for **particle types:** color, colorNEW, fadeColor, initialColor, explosionGradient, explosionGradient2, explosionGradient3, emissiveMaskColor, emissiveMaskColor2.
-
+- Added support for **standard types:** 
+  ```
+  1. emissiveTint
+  2. explosionGradient 
+  3. explosionGradient2
+  4. explosionGradient3
+  5. emissiveMaskColor
+  6. emissiveMaskColor2
+  7. lightColor
+  8. surfaceColor2
+  ```
+- Added support for **particle types:** 
+  ```
+  1. color
+  2. colorNEW
+  3. fadeColor
+  4. initialColor
+  5. explosionGradient
+  6. explosionGradient2
+  7. explosionGradient3
+  8. emissiveMaskColor
+  9. emissiveMaskColor2
+  ```
 
 ## [0.1.1] - 2021-05-17
 
