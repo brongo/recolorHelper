@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
   3. FX_RIBBON_2
   4. FX_SCREEN_SHAKE
   ```
-- Added support for **standard types:** 
+- Added support for **Standard types:** 
   ```
   1. emissiveTint
   2. explosionGradient 
@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
   7. lightColor
   8. surfaceColor2
   ```
-- Added support for **particle types:** 
+- Added support for **Particle types:** 
   ```
   1. color
   2. colorNEW
