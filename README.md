@@ -1,4 +1,4 @@
-# recolorHelper v0.1.1 by SamPT
+# recolorHelper v0.2.0 by SamPT
 
 recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
 
@@ -25,27 +25,47 @@ Alpha values ("a" or "w") will not be changed.
 To avoid changing colors that *should not* be changed, the tool operates only on specific color types:
 
 ```
-1. colorOnSpawn + colorOnDeath
-2. decalDiffuseTint + decalEmmissiveTint
-3. particleColorTint
-4. surfaceemissivecolor + surfaceemissivecolor2
-5. surfacesheencolor
-6. FX_PARTICLE
-7. FX_MODEL
+colorOnDeath   
+colorOnSpawn               
+decalDiffuseTint     
+decalEmmissiveTint   
+emissiveTint     
+emissiveMaskColor
+emissiveMaskColor2
+explosionGradient
+explosionGradient2
+explosionGradient3
+FX_DECAL
+FX_DESTRUCTIBLE
+FX_MODEL
+FX_RIBBON_2
+FX_SCREEN_SHAKE
+lightColor
+particleColorTint    
+surfacecolor2
+surfaceemissivecolor 
+surfaceemissivecolor2
+surfacesheencolor
 ```
 
 Color types with special handling:
 
 ```
-1. FX_LIGHT         // changes all color values *except* for "ambient_light"
-2. FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc will not be changed.
+FX_LIGHT         // changes all color values *except* for "ambient_light"
+FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc will not be changed.
+FX_PARTICLE			 // special handling, files MUST be in proper directory structure (e.g. /decls/particle/)
+
+// below items are used for FX_PARTICLE only
+color
+fadeColor
+initialColor
 ```
 
 ## What This Tool DOES NOT Do
 
-**This tool does not create a recolor base for you automatically.** It speeds up the process by changing 90%+ of the color values needed. However, you still need to identify the correct .decl files to change, and manually review & test afterwards.
+**This tool does not create a recolor base for you automatically.** It speeds up the process by changing 95%+ of the color values needed. However, you still need to identify the correct .decl files to change, and manually review & test afterwards.
 
-Some color values will **not** be changed automatically due to ambiguous or inconsistent usage in the .decl files. If you don't see the expected results, you should review the .decl files to see if any color values were skipped. 
+Some color values may not be changed automatically due to ambiguous or inconsistent usage in the .decl files. If you don't see the expected results, you should review the .decl files to see if any color values were skipped. 
 
 ## Usage 
 
