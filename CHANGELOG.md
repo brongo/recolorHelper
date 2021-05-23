@@ -3,8 +3,6 @@ All notable changes to this project will be documented in this file.
 
 ## [0.2.0] - 2021-05-23
 
-- Fixed a bug that could cause both xyz and rgb values to be printed in some cases.
-- Fixed a bug that could cause some FX values to be skipped.
 - Added support for **FX types:** 
   ```
   1. FX_DECAL
@@ -35,6 +33,8 @@ All notable changes to this project will be documented in this file.
   8. emissiveMaskColor
   9. emissiveMaskColor2
   ```
+- Fixed a bug that could cause both xyz and rgb values to be printed in some cases.
+- Fixed a bug that could cause some FX values to be skipped.
 
 ## [0.1.1] - 2021-05-17
 
