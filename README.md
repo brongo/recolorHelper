@@ -53,9 +53,13 @@ Color types with special handling:
 ```
 FX_LIGHT         // changes all color values *except* for "ambient_light"
 FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc will not be changed.
-FX_PARTICLE			 // special handling, files MUST be in proper directory structure (e.g. /decls/particle/)
+FX_PARTICLE			   // see below
+```
 
-// below items are used for FX_PARTICLE only
+Color types used with FX_PARTICLE only:
+(Only used on files in the /decls/particle or /decls/particlestage directories)
+
+```
 color
 fadeColor
 initialColor
