@@ -56,7 +56,7 @@ FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc
 FX_PARTICLE      // see below
 ```
 
-Color types used with FX_PARTICLE only. **Files must be in /decls/particle or /decls/particlestage directories)**
+Color types used with FX_PARTICLE only. **Files must be in /decls/particle or /decls/particlestage directories**
 
 ```
 color
