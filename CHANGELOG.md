@@ -24,9 +24,9 @@ All notable changes to this project will be documented in this file.
 - Added support for **Particle types:** 
   ```
   1. color
-  2. colorNEW
-  3. fadeColor
-  4. initialColor
+  2. fadeColor
+  3. initialColor
+  4. gradient
   5. explosionGradient
   6. explosionGradient2
   7. explosionGradient3
