@@ -33,6 +33,8 @@ All notable changes to this project will be documented in this file.
   8. emissiveMaskColor
   9. emissiveMaskColor2
   ```
+- Added multiple error checks and error messages.
+- Added small delay before closing program, so user has time to read console output. (Windows only)
 - Fixed a bug that could cause both xyz and rgb values to be printed in some cases.
 - Fixed a bug that could cause some FX values to be skipped.
 
