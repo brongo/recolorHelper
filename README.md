@@ -62,6 +62,7 @@ Color types used with FX_PARTICLE only. **Files must be in /decls/particle or /d
 color
 fadeColor
 initialColor
+gradient
 ```
 
 ## What This Tool DOES NOT Do
