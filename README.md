@@ -1,5 +1,7 @@
 # recolorHelper v0.3 by SamPT (in development)
 
+__*Please note documentation has not yet been updated for version v0.3. In progress.*__
+
 recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
 
 It will automatically reset .decl color values to 0.0001, eliminating the tedious work of going through each .decl file and changing these line-by-line. **Some manual work is still required.** See the section titled "*What this tool DOES NOT do.*"
