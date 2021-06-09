@@ -89,8 +89,5 @@ namespace RecolorTool
                 "plasma_stun",
                 "default_noMatch"
             };
-            
-
-
     };
 }
