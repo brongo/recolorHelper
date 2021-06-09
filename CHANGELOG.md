@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2021-06-08
+
+- Added user-configurable options via config file (recolor.cfg).
+- Added special handling for fx/character and fx/demon_player folders. 
+- Added support for custom color values.
+- Added support for FX_SOUND color used by plasma rifle.
+- Significant code refactoring for maintainability.
+
 ## [0.2.0] - 2021-05-23
 
 - Added support for **FX types:** 
