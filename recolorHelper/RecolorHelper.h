@@ -43,6 +43,7 @@ namespace RecolorTool
 
             // read user-defined configuration
             DeclFile openConfigFile();
+            DeclFile configNormalizeFormatting(DeclFile configFile);
             bool configColorsAreValid(std::vector<std::string> colorValues) const;
             bool configSearchTypeIsValid(std::string searchType) const;
             bool configIsValid(DeclFile configFile);

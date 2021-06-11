@@ -24,6 +24,38 @@ namespace RecolorTool
         }
         return configFile;
     }
+    DeclFile RecolorHelper::configNormalizeFormatting(DeclFile configFile)
+    {
+        DeclFile configNormalized;
+        configNormalized.lineCount = configFile.lineCount;
+        for (int i = 0; i < configFile.lineCount; i++)
+        {
+            DeclSingleLine thisLine = configFile.getLineData(i);   
+            if (thisLine.formatIsGood)
+            {
+                configNormalized.setLineData(thisLine);
+                continue;
+            }
+
+            // splits line into proper components if declReader stuffed everything into "lineVariable"
+            size_t splitPos = thisLine.lineVariable.find("=");
+            if (splitPos != -1)
+            {
+                DeclSingleLine newLine;
+                newLine.lineStart = thisLine.lineStart;
+
+                std::string line = thisLine.lineVariable;
+                newLine.lineVariable = stripWhiteSpace(line.substr(0, splitPos));
+                newLine.lineAssignment = stripWhiteSpace(line.substr(splitPos, 1));
+                newLine.lineValue = stripWhiteSpace(line.substr(splitPos + 1, line.length() - (splitPos + 1) - 1));
+                newLine.lineTerminator = line.substr(line.length() - 1, 1);
+                configNormalized.setLineData(newLine);
+                continue;
+            }
+            configNormalized.setLineData(thisLine);
+        }
+        return configNormalized;
+    };
     bool RecolorHelper::configColorsAreValid(std::vector<std::string> colorValues) const
     {
         std::string value;
@@ -389,7 +421,6 @@ namespace RecolorTool
             declFile.initRecolor();
 
             // Deletes unneeded files and empty directories if set in config
-            // Disabled until testing is finished + user confirmation is added.
             if (config.deleteUnmodifiedFiles == "true")
                 if (deleteUnmodifiedFile(declFile))
                     continue;
@@ -444,7 +475,10 @@ int main(int argc, char* argv[])
     }
 
     RecolorHelper recolorHelper;
-    DeclFile configFile = recolorHelper.openConfigFile();
+    DeclFile configFile;
+    
+    configFile = recolorHelper.openConfigFile();
+    configFile = recolorHelper.configNormalizeFormatting(configFile);
 
     if (!recolorHelper.configIsValid(configFile))
     {
