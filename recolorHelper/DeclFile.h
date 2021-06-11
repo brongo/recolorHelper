@@ -44,13 +44,15 @@ namespace RecolorTool
             void setDeclConfig(Config mainConfig) { config = mainConfig; }
             
             // Multi-line search functions
-            uint64 findNextColorLine(uint64 lineNumberStart) const;
+            uint64 getLineAfterVariable(uint64 lineNumberStart, std::string variableName) const;
             std::string findPreviousLineValue(uint64 lineNumberStart, std::string variableName) const;
             std::string findNextLineValue(uint64 lineNumberStart, std::string variableName) const;
+            std::vector<uint64> multiLookAhead_forVariable(uint64 lineNumberStart, std::string variableName, uint64 lookAheadDistance, uint64 maxNumToFind) const;
 
             // For identifying .decl files that need special handling
             bool inCharacterFXDirectory() const;
             bool inParticleDirectory() const;
+            bool inWeaponPlayerDirectory() const;
 
             // Determines which config typeList to use
             std::vector<std::string> getStandardTypeList() const;
@@ -60,6 +62,7 @@ namespace RecolorTool
             size_t getListIndex_LineValue(const std::vector<std::string> typeList, uint64 startLine) const;
 
             // Returns the line number we need for DeclFile::setColorVars()
+
             uint64 getColorLineNumber(const std::vector<std::string> typeList, size_t listIndex, uint64 startLine) const;
             uint64 getColorLineNumber_byFXType(uint64 lineNumber) const;
             uint64 getColorLineNumber_bySpecialType(uint64 lineNumber) const;
@@ -67,8 +70,9 @@ namespace RecolorTool
             // Only function that actually sets color values
             void setColorVars(uint64 lineNumber);
 
-            // Alternate path for user-defined search types
+            // Alternate path for special search types
             void loopSpecialSearchType();
+            void loopPlasmaRifleSearchType();
 
             // Main function
             void initRecolor();

@@ -7,8 +7,7 @@ namespace RecolorTool
         std::string::iterator end_pos = std::remove(str.begin(), str.end(), ' ');
         str.erase(end_pos, str.end());
         return str;
-    }
-    
+    }  
     std::string stripQuotes(std::string str)
     {
         std::string::iterator end_pos = std::remove(str.begin(), str.end(), '"');
@@ -17,19 +16,16 @@ namespace RecolorTool
         str.erase(end_pos2, str.end());
         return str;
     }
-
     std::string normalizePath(std::string s1)
     {
         fs::path p = s1;
         return p.string();
     }
-    
     std::string stringToLowercase(std::string str)
     {
         transform(str.begin(), str.end(), str.begin(), ::tolower);
         return str;
-    }
-    
+    } 
     int case_insensitive_match(std::string s1, std::string s2)
     {
         s1 = stringToLowercase(s1);
@@ -38,7 +34,6 @@ namespace RecolorTool
             return 1; // match
         return 0;
     }
-
     void closeProgramAfterSleep(int sleepTime)
     {
         printf("Program will exit now...\n\n\n");

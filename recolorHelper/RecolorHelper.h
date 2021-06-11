@@ -50,9 +50,12 @@ namespace RecolorTool
 
             // deletes unmodified files if set in config
             bool deleteUnmodifiedFile(DeclFile declFile);
+            bool deleteEmptyDirectories(const fs::path& basedir);
+            bool deleteFromList(std::vector<std::string> emptyDirectories);
+            std::vector<std::string> getEmptyDirectories(const fs::path& basedir) const;
 
             // recursive directory search, adds files to RecolorHelper->FileList
-            bool getFileList(const fs::path& basedir);
+            void getFileList(const fs::path& basedir);
             bool tryGetFileList();
 
             // user confirmation functions

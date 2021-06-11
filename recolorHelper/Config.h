@@ -73,6 +73,11 @@ namespace RecolorTool
                 "\"FX_DESTRUCTIBLE\"",
                 "default_noMatch"
             };
+            std::vector<std::string> valueVec4Types
+            {
+                "\"CHARGE_PROPERTY_RENDER_PARMS\"",
+                "default_noMatch"
+            };
             std::vector<std::string> specialTypes
             {
                 "\"FX_DECAL\"",
@@ -83,11 +88,15 @@ namespace RecolorTool
             // List of predefined search types
             std::vector<std::string> predefinedSearchList
             {
+                "all",
                 "bfg_stun",
                 "ice_bomb_freeze",
                 "on_fire",
                 "plasma_stun",
                 "default_noMatch"
             };
+            
+
+
     };
 }

@@ -51,7 +51,7 @@ namespace RecolorTool
     }
 
     // Multi-line search functions
-    uint64 DeclFile::findNextColorLine(uint64 lineNumberStart) const
+    uint64 DeclFile::getLineAfterVariable(uint64 lineNumberStart, std::string variableName) const
     {
         uint64 maxLookAhead = config.maxColorLookAhead;
         if ((lineNumberStart + maxLookAhead) > lineCount)
@@ -60,7 +60,7 @@ namespace RecolorTool
         for (uint64 i = 0; i < maxLookAhead; i++)
         {
             DeclSingleLine thisLine = _lineData[lineNumberStart + i];
-            if (thisLine.lineVariable == "color")
+            if (thisLine.lineVariable == variableName)
                 return lineNumberStart + i;
         }
         return -1;
@@ -93,6 +93,30 @@ namespace RecolorTool
         }
         return "";
     }
+    std::vector<uint64> DeclFile::multiLookAhead_forVariable(uint64 lineNumberStart, std::string variableName, uint64 lookAheadDistance, uint64 maxNumToFind) const
+    {
+        int found = 0;
+        std::vector<uint64> matchedLines;
+        uint64 maxLookAhead = lookAheadDistance;
+
+        if ((lineNumberStart + maxLookAhead) > lineCount)
+            maxLookAhead = lineCount - lineNumberStart;
+
+        for (uint64 i = 0; i < maxLookAhead; i++)
+        {
+            DeclSingleLine thisLine = _lineData[lineNumberStart + i];
+
+            if (found >= maxNumToFind)
+                return matchedLines;
+
+            if (thisLine.lineVariable == variableName)
+            {
+                matchedLines.push_back(lineNumberStart + i);
+                found++;
+            }
+        }
+        return matchedLines;
+    }
 
     // For identifying .decl files that need special handling
     bool DeclFile::inCharacterFXDirectory() const
@@ -117,6 +141,17 @@ namespace RecolorTool
         if (_declFileName.find("decls/particle") != -1)
             return 1;
         return 0;
+        #endif
+    }
+    bool DeclFile::inWeaponPlayerDirectory() const {
+        #ifdef _WIN32
+                if (_declFileName.find("weapon\\weapon\\player") != -1)
+                    return 1;
+                return 0;
+        #else
+                if (_declFileName.find("weapon/weapon/player") != -1)
+                    return 1;
+                return 0;
         #endif
     }
 
@@ -155,7 +190,6 @@ namespace RecolorTool
     {
         if ((listIndex == 0) && (searchList[0] == "type"))
             return getColorLineNumber_byFXType(startLine);
-
         return startLine;
     }
     uint64 DeclFile::getColorLineNumber_byFXType(uint64 lineNumber) const
@@ -171,7 +205,7 @@ namespace RecolorTool
             // FX_LIGHT - change this *except* for ambient_light
             std::string fxItemName = findPreviousLineValue(lineNumber, "name");
             if (!case_insensitive_match(fxItemName, "\"ambient_light\""))
-                return findNextColorLine(lineNumber);
+                return getLineAfterVariable(lineNumber, "color");
             break;
         }
         case 1:
@@ -179,7 +213,7 @@ namespace RecolorTool
             // FX_RENDERPARM - *only* change "fire_primary" group
             std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
             if (case_insensitive_match(fxItemGroup, "\"fire_primary\""))
-                return findNextColorLine(lineNumber);
+                return getLineAfterVariable(lineNumber, "color");
             break;
         }
         case 2:
@@ -187,13 +221,13 @@ namespace RecolorTool
             // FX_SOUND - same as FX_RENDERPARM
             std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
             if (case_insensitive_match(fxItemGroup, "\"fire_primary\""))
-                return findNextColorLine(lineNumber);
+                return getLineAfterVariable(lineNumber, "color");
             break;
         }
         default:
         {
             // FX_PARTICLE, FX_MODEL, FX_SCREEN_SHAKE, FX_RIBBON_2, FX_DECAL, FX_DESTRUCTIBLE
-            return findNextColorLine(lineNumber);
+            return getLineAfterVariable(lineNumber, "color");
         }
         }
         return -1;
@@ -205,34 +239,61 @@ namespace RecolorTool
         {
             case 0:
             {
+                // DO ALL
+                std::string fxItemGroup;
+
                 // "bfg_stun" characterFX
-                std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
+                fxItemGroup = findPreviousLineValue(lineNumber, "group");
                 if (case_insensitive_match(fxItemGroup, "\"bfg_stun\""))
-                    return findNextColorLine(lineNumber);
+                    return getLineAfterVariable(lineNumber, "color");
+
+                // "ice_bomb_freeze" characterFX
+                fxItemGroup = findPreviousLineValue(lineNumber, "group");
+                if (case_insensitive_match(fxItemGroup, "\"ice_bomb_freeze\""))
+                    return getLineAfterVariable(lineNumber, "color");
+
+                // "on_fire" and "on_fire_upgraded" characterFX
+                fxItemGroup = findPreviousLineValue(lineNumber, "group");
+                if (case_insensitive_match(fxItemGroup, "\"on_fire\"") || case_insensitive_match(fxItemGroup, "\"on_fire_upgraded\""))
+                    return getLineAfterVariable(lineNumber, "color");
+
+                // "plasma_stun" characterFX
+                fxItemGroup = findPreviousLineValue(lineNumber, "group");
+                if (case_insensitive_match(fxItemGroup, "\"plasma_stun\""))
+                    return getLineAfterVariable(lineNumber, "color");
+
                 return -1;
             }
             case 1:
             {
-                // "ice_bomb_freeze" characterFX
+                // "bfg_stun" characterFX
                 std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
-                if (case_insensitive_match(fxItemGroup, "\"ice_bomb_freeze\""))
-                    return findNextColorLine(lineNumber);
+                if (case_insensitive_match(fxItemGroup, "\"bfg_stun\""))
+                    return getLineAfterVariable(lineNumber, "color");
                 return -1;
             }
             case 2:
             {
-                // "on_fire" and "on_fire_upgraded" characterFX
+                // "ice_bomb_freeze" characterFX
                 std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
-                if (case_insensitive_match(fxItemGroup, "\"on_fire\"") || case_insensitive_match(fxItemGroup, "\"on_fire_upgraded\""))
-                    return findNextColorLine(lineNumber);
+                if (case_insensitive_match(fxItemGroup, "\"ice_bomb_freeze\""))
+                    return getLineAfterVariable(lineNumber, "color");
                 return -1;
             }
             case 3:
             {
+                // "on_fire" and "on_fire_upgraded" characterFX
+                std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
+                if (case_insensitive_match(fxItemGroup, "\"on_fire\"") || case_insensitive_match(fxItemGroup, "\"on_fire_upgraded\""))
+                    return getLineAfterVariable(lineNumber, "color");
+                return -1;
+            }
+            case 4:
+            {
                 // "plasma_stun" characterFX
                 std::string fxItemGroup = findPreviousLineValue(lineNumber, "group");
                 if (case_insensitive_match(fxItemGroup, "\"plasma_stun\""))
-                    return findNextColorLine(lineNumber);
+                    return getLineAfterVariable(lineNumber, "color");
                 return -1;
             }
             default:
@@ -398,7 +459,7 @@ namespace RecolorTool
         return;
     }
 
-    // Alternate path for user-defined search types
+    // Alternate path for special search types
     void DeclFile::loopSpecialSearchType() 
     {
         for (uint64 lineNumber = 0; lineNumber < lineCount; lineNumber++)
@@ -419,6 +480,24 @@ namespace RecolorTool
             setColorVars(colorLineNumber);
         }
     }
+    void DeclFile::loopPlasmaRifleSearchType()
+    {
+        for (uint64 lineNumber = 0; lineNumber < lineCount; lineNumber++) 
+        {
+            size_t listIndex;
+            listIndex = getListIndex_LineValue(config.valueVec4Types, lineNumber);
+
+            if (listIndex == -1)
+                continue;
+
+            std::vector<uint64> valueVec4Lines = multiLookAhead_forVariable(lineNumber, "valueVec4", 40, 4);
+
+            if (valueVec4Lines.size() == 4)
+                for (int i = 0; i < 4; i++)
+                    setColorVars(valueVec4Lines[i]);
+        }
+        return;
+    }
 
     // Main function
     void DeclFile::initRecolor()
@@ -428,9 +507,19 @@ namespace RecolorTool
             loopSpecialSearchType();
             return;
         }
-            
+
         if (inCharacterFXDirectory())
+        {
+            this->fileWasModified = 1; // prevent deleting of skipped files
             return;
+        }
+   
+        if (inWeaponPlayerDirectory())
+        {
+            loopPlasmaRifleSearchType();
+            return;
+        }
+            
 
         std::vector<std::string> searchList = getStandardTypeList();
         for (uint64 lineNumber = 0; lineNumber < lineCount; lineNumber++)

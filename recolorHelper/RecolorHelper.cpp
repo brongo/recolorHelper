@@ -9,14 +9,14 @@ namespace RecolorTool
         DeclFile configFile;
         const char* configFileName = "recolor.cfg";
         fs::path configPath = fs::current_path() / "recolor.cfg";
-        try 
+        try
         {
             DeclReader declReader;
             declReader.openFileStream(configFileName);
             configFile = declReader.readDeclFile();
-            declReader.closeFileStream();       
+            declReader.closeFileStream();
         }
-        catch (...) 
+        catch (...)
         {
             printf("\n\n");
             printf("ERROR: Unable to read configuration file.\n");
@@ -46,7 +46,7 @@ namespace RecolorTool
                 printf("Valid range is between 0.0 to 1.0, or -1 to ignore.\n");
                 return 0;
             }
-                
+
         }
         return 1;
     }
@@ -54,9 +54,9 @@ namespace RecolorTool
     {
         std::vector<std::string> searchList = config.predefinedSearchList;
         auto it = std::find(searchList.begin(), searchList.end(), config.specialSearchType);
-        
+
         if (it != searchList.end())
-            return 1; 
+            return 1;
 
         printf("\n\n");
         printf("ERROR: Config file set \"useSpecial = true\", but \"specialSearchType\" is missing or invalid.\n");
@@ -68,7 +68,7 @@ namespace RecolorTool
         if (_invalidConfig == 1)
             return 0;
 
-        std::vector<std::string> colorValues = 
+        std::vector<std::string> colorValues =
         {
             stripQuotes(stripWhiteSpace(configFile.findNextLineValue(0, "color1"))),
             stripQuotes(stripWhiteSpace(configFile.findNextLineValue(0, "color2"))),
@@ -80,7 +80,7 @@ namespace RecolorTool
 
         std::string useSpecial = stripQuotes(stripWhiteSpace(configFile.findNextLineValue(0, "useSpecial")));
         std::string specialSearchType = stripQuotes(stripWhiteSpace(configFile.findNextLineValue(0, "specialSearchType")));
-        
+
         if ((config.useSpecial == "true") && (!configSearchTypeIsValid(specialSearchType)))
             return 0;
         return 1;
@@ -112,17 +112,17 @@ namespace RecolorTool
         if (declFile.fileWasModified != 0)
             return 0;
 
-        try 
+        try
         {
-            // deletes the file
+            // file to delete
             fs::path p = declFile.getFileName();
-            remove(p);
 
-            fs::path parent = p.parent_path();
-        
-            // deletes the directory if empty
-            if (fs::is_empty(parent))
-                remove(parent);
+            // shouldn't be possible to get this far unless its a .decl file, but check again just to be sure.
+            if (p.extension() != ".decl")
+                return 0;
+
+            printf("Deleting file: %s \n", p.string().c_str());
+            fs::remove(p);
         }
         catch (...)
         {
@@ -133,11 +133,54 @@ namespace RecolorTool
 
         return 1;
     };
+    bool RecolorHelper::deleteEmptyDirectories(const fs::path& basedir)
+    {    
+        if (inputHasDeclExtension())
+            return 1;
+        
+        int checkAgain = 1;
+        while (checkAgain == 1)
+        {
+            std::vector<std::string> emptyDirectories = getEmptyDirectories(basedir);
+            if (emptyDirectories.size() == 0)
+                checkAgain = 0;
+            else
+                deleteFromList(emptyDirectories);
+        }
+        return 1;
+    }
+    bool RecolorHelper::deleteFromList(std::vector<std::string> emptyDirectories)
+    {
+        if (emptyDirectories.size() <= 0)
+        {
+            printf("\n\n");
+            printf("ERROR: function deleteFromList() called on empty list. \n");
+            return 0;
+        }
+
+        for (std::string& deleteMe : emptyDirectories)
+        {
+            fs::path p = deleteMe;
+            printf("Deleting empty directory: %s \n", p.string().c_str());
+            fs::remove(p);
+        }
+
+        return 1;
+    }
+    std::vector<std::string> RecolorHelper::getEmptyDirectories(const fs::path& basedir) const
+    {
+        std::vector<std::string> deletionList;
+        for (const auto& p : fs::recursive_directory_iterator(basedir))
+        {
+            if (fs::is_empty(p.path()))
+                deletionList.push_back(p.path().string());
+        }
+        return deletionList;
+    }
 
     // recursive directory search, adds files to RecolorHelper->FileList
-    bool RecolorHelper::getFileList(const fs::path& basedir)
+    void RecolorHelper::getFileList(const fs::path& basedir)
     {
-        uint64 iterationCount = 0;
         for (const auto& p : fs::recursive_directory_iterator(basedir))
         {
             if (p.path().extension() == ".decl")
@@ -148,30 +191,28 @@ namespace RecolorTool
 
             // abort early if too many .decl files found
             if (fileList.fileCount > config.maxFileCount)
-                return 0;
+                return;
 
             // abort early if too many files/folders found (any type).
-            if (iterationCount > config.maxSearchIterationCount)
-                return 0;
+            if (fileList.searchIterations > config.maxSearchIterationCount)
+                return;
 
-            iterationCount++;
+            fileList.searchIterations++;
         }
-        return 1;
+        return;
     }
     bool RecolorHelper::tryGetFileList()
     {
         try {
             const char* filePathArg = _inputPath.c_str();
-            if (getFileList(filePathArg))
-                return 1;
-            return 0;
+            getFileList(filePathArg);
+            return 1;
         }
         catch (...) {
             printf("\n\n");
             printf("ERROR: invalid filepath. Please check the filepath and try again.\n");
             return 0;
         }
-        return 0;
     }
 
     // user confirmation functions
@@ -349,11 +390,9 @@ namespace RecolorTool
 
             // Deletes unneeded files and empty directories if set in config
             // Disabled until testing is finished + user confirmation is added.
-            /*
             if (config.deleteUnmodifiedFiles == "true")
                 if (deleteUnmodifiedFile(declFile))
                     continue;
-            */
 
             // Overwrites original .decl file with recolored version.
             DeclWriter declWriter;
@@ -419,6 +458,14 @@ int main(int argc, char* argv[])
     if (recolorHelper.inputIsValid())
     {
         recolorHelper.processFileList();
+
+        // clean up empty directories
+        if (recolorHelper.config.deleteUnmodifiedFiles == "true")
+        {
+            const char* inputPath = argv[1];
+            recolorHelper.deleteEmptyDirectories(inputPath);
+        }
+
         printf("\n\n");
         printf("Operation completed successfully.\n");
         closeProgramAfterSleep(1600);
