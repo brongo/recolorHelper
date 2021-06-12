@@ -22,6 +22,8 @@ color3 = 0.000001;
 
 useSpecial = false;
 specialSearchType = none;
+
+# ALWAYS BACKUP YOUR WORK BEFORE USING THIS
 deleteUnmodifiedFiles = false;
 ```
 
@@ -51,6 +53,8 @@ color1 = 1;
 color2 = 0;
 color3 = 0;
 ```
+**color1, color2, and color3 are the names of the setting. DO NOT CHANGE THESE.**
+
 This configuration would set all the red channels to 1, while setting green and blue channels to 0. It would make everything bright red.
 
 **Please note the valid range for a color is from 0.0 - 1.0. Any values above 1 will result in an error message.** If you aren't sure what color to use, you can do a Google search for "RGB color picker." Most color pickers will have a value from 0-255 for each channel (r, g, b). To convert this to the format used by the game, simply divide by 255. For example, if the color picker gives you a value of 100. The value used in the game is: `(100/255) = 0.3921568`.
