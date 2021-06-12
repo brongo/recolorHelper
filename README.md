@@ -13,6 +13,9 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
 
+### Config Documentation:
+For instructions on using the custom configuration options, see here:  https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
+
 &nbsp;
 ## What This Tool Does
 
@@ -26,7 +29,7 @@ b = 0.000001;   // or "z"
 
 Alpha values ("a" or "w") will not be changed.
 
-**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file.
+**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file. For instructions on using the custom configuration options, see here:  https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
 
 &nbsp;
 ## Usage 
@@ -50,7 +53,7 @@ recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* 
 &nbsp;
 ## Customizing the Config File ##
 
-The configuration file is explained in a separate documentation file. See here:
+The configuration file is explained in a separate documentation file. See here: https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
 
 &nbsp;
 ## Supported color types:
