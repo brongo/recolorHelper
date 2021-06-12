@@ -12,9 +12,7 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Ignore color channels (e.g. set only "red" channels, ignore green and blue).
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
-
-### Config Documentation:
-For instructions on using the custom configuration options, see here:  https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
+- Full config documentation here: https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
 
 &nbsp;
 ## What This Tool Does
