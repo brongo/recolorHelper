@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [0.3.0] - 2021-06-08
 
 - Added config file (recolor.cfg), for users to set custom config options.
-- Added user-configurable color values, set via config file.
+- Added config option for custom color values, set via config file.
 - Added config option to ignore color channels (example: set only "red" channels, ignore green and blue).
 - Added config option to remove unmodified files.
 - Added config options to target specific fx/character and fx/demon_player groups.
