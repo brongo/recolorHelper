@@ -9,9 +9,23 @@ namespace RecolorTool
             return 1;
         return 0;
     }
+    bool DeclSingleLine::isCommentedOut() const
+    {
+        if (lineStart == "#")
+            return 1;
+        return 0;
+    }
+    bool DeclSingleLine::endsWithSemicolon() const
+    {
+        if (lineTerminator == ";")
+            return 1;
+        return 0;
+    };
     void DeclSingleLine::readFromStream(std::ifstream& input, std::string line)
     {
         size_t splitPos = 0;
+
+        // for identifying lines with no alphanumeric characters
         auto it = std::find_if(line.begin(), line.end(), [](char c) {
             return std::isalpha(c, std::locale());
             });
@@ -41,6 +55,7 @@ namespace RecolorTool
             {
                 // for "editorvars" format
                 lineVariable = line;
+                formatIsGood = 0;
             }
         }
         else

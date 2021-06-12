@@ -27,17 +27,37 @@ namespace RecolorTool
     DeclFile RecolorHelper::configNormalizeFormatting(DeclFile configFile)
     {
         DeclFile configNormalized;
-        configNormalized.lineCount = configFile.lineCount;
+        configNormalized.lineCount = configFile.lineCount;     
         for (int i = 0; i < configFile.lineCount; i++)
-        {
-            DeclSingleLine thisLine = configFile.getLineData(i);   
+        {         
+            DeclSingleLine thisLine = configFile.getLineData(i);               
             if (thisLine.formatIsGood)
             {
+                if (thisLine.isCommentedOut())
+                {
+                    configNormalized.setLineData(thisLine);
+                    continue;
+                }
+                if (thisLine.lineStart.empty())
+                {
+                    configNormalized.setLineData(thisLine);
+                    continue;
+                }
+                if (!thisLine.endsWithSemicolon())
+                {
+                    // line ending is missing. need to throw error, otherwise we may set the wrong value
+                    printf("\n\n");
+                    printf("ERROR: Unable to parse config file.\n");
+                    printf("Config file \"recolor.cfg\" is missing a semicolon (;) \n");
+                    _invalidConfig = 1;
+                    return configFile;
+                }
                 configNormalized.setLineData(thisLine);
                 continue;
             }
 
-            // splits line into proper components if declReader stuffed everything into "lineVariable"
+            // if declReader finds bad formatting, it stuffs everything into "lineVariable"
+            // this checks for common formatting issues, to see if we can avoid throwing an error
             size_t splitPos = thisLine.lineVariable.find("=");
             if (splitPos != -1)
             {
@@ -48,7 +68,25 @@ namespace RecolorTool
                 newLine.lineVariable = stripWhiteSpace(line.substr(0, splitPos));
                 newLine.lineAssignment = stripWhiteSpace(line.substr(splitPos, 1));
                 newLine.lineValue = stripWhiteSpace(line.substr(splitPos + 1, line.length() - (splitPos + 1) - 1));
-                newLine.lineTerminator = line.substr(line.length() - 1, 1);
+                newLine.lineTerminator = stripWhiteSpace(line.substr(line.length() - 1, 1));
+
+                // support for unix line endings
+                if (newLine.lineTerminator == "\r")
+                {
+                    newLine.lineTerminator = stripWhiteSpace(line.substr(line.length() - 2, 1));
+                    newLine.lineValue = stripWhiteSpace(line.substr(splitPos + 3, line.length() - (splitPos + 3) - 2));
+                }
+
+                // line ending is missing. need to throw error, otherwise we may set the wrong value
+                if (!newLine.endsWithSemicolon())
+                {
+                    printf("\n\n");
+                    printf("ERROR: Unable to parse config file.\n");
+                    printf("Config file \"recolor.cfg\" is missing a semicolon (;) \n");
+                    _invalidConfig = 1;
+                    return configFile;
+                }
+                
                 configNormalized.setLineData(newLine);
                 continue;
             }

@@ -19,9 +19,12 @@ namespace RecolorTool
             std::string lineAssignment = "";
             std::string lineValue = "";
             std::string lineTerminator = "";
+            int formatIsGood = 1;
 
         public:
             bool isRGB() const;
+            bool isCommentedOut() const;
+            bool endsWithSemicolon() const;
             void readFromStream(std::ifstream& input, std::string line);
     };
 
@@ -42,7 +45,7 @@ namespace RecolorTool
             void setFileName(std::string fileName) { _declFileName = fileName; }
             void setLineData(DeclSingleLine lineData) { _lineData.push_back(lineData); }
             void setDeclConfig(Config mainConfig) { config = mainConfig; }
-            
+
             // Multi-line search functions
             uint64 getLineAfterVariable(uint64 lineNumberStart, std::string variableName) const;
             std::string findPreviousLineValue(uint64 lineNumberStart, std::string variableName) const;
