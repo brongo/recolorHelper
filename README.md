@@ -4,7 +4,7 @@ recolorHelper is a tool for mass-editing color values in DOOM Eternal. When used
 
 __*Important:*__ Make sure you have a backup of your .decl files. This tool does not take backups. It will directly overwrite the files it is used on. I do not take responsibility for any file corruption or loss of data that may occur.
 
-## *NEW* in Version 0.3
+## *NEW in Version 0.3*
 
 Now includes a configuration file (recolor.cfg) to allow for easy customization of the recolor program. The configuration options allow you to:
 
