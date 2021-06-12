@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Additional error handling and safety checks throughout program.
 - Significant code refactor for maintainability.
 - Windows & Linux codebases are merged. Program can be compiled on either platform.
+- Source code is now public and licensed under GPL.
 
 ## [0.2.0] - 2021-05-23
 
