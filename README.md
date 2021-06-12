@@ -13,7 +13,7 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
 
-## What This Tool Does
+## How it Works
 
 The tool will read & edit files with the .decl file extension. It does not read any other type of file. Within a .decl file, the tool will search for specific color values and change them as follows:
 
