@@ -1,16 +1,21 @@
-# recolorHelper v0.3 by SamPT (in development)
+# recolorHelper v0.3 by SamPT
 
-__*Please note documentation has not yet been updated for version v0.3. In progress.*__
-
-recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
-
-It will automatically reset .decl color values to 0.0001, eliminating the tedious work of going through each .decl file and changing these line-by-line. **Some manual work is still required.** See the section titled "*What this tool DOES NOT do.*"
+recolorHelper is a tool for mass editing color values in DOOM Eternal. When used on a folder containing .decl files, it will change all color values to the colors you specify. It can also remove any unneeded files automatically. 
 
 __*Important:*__ Make sure you have a backup of your .decl files. This tool does not take backups. It will directly overwrite the files it is used on. I do not take responsibility for any file corruption or loss of data that may occur.
 
+## NEW in Version 0.3
+
+Now includes a configuration file (recolor.cfg) to allow for easy customization of the recolor program. The configuration options allow you to:
+
+- Set any color values you want (instead of the default 0.0001 for recolor bases).
+- Ignore color channels (example: set only "red" channels, ignore green and blue).
+- Automatically remove unneeded files, and delete empty folders.
+- Target specific colors in fx/character and fx/demon_player groups (for example, changing only the "on_fire" effects and leave the rest alone).
+
 ## What This Tool Does
 
-The tool will read & edit files with the .decl file extension. It does not read any other type of file.
+The tool will read & edit files with the .decl file extension. It does not read any other type of file. It can be used on a single .decl file, or a folder containing multiple .decl files. **It can not be used on a .zip folder.**
 
 Within a .decl file, the tool will search for specific color values and change them as follows:
 
@@ -21,6 +26,9 @@ b = 0.000001;   // or "z"
 ```
 
 Alpha values ("a" or "w") will not be changed.
+
+**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file, which should be in the same folder as recolorHelper.exe.
+
 
 ### Supported color types:
 
@@ -55,6 +63,7 @@ Color types with special handling:
 ```
 FX_LIGHT         // changes all color values *except* for "ambient_light"
 FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc will not be changed.
+FX_SOUND         // ignores these values *except* for "fire_primary"
 FX_PARTICLE      // see below
 ```
 
@@ -67,15 +76,18 @@ initialColor
 gradient
 ```
 
-## What This Tool DOES NOT Do
+Target specific color groups in fx/character and fx/demon_player. **Files must be in these directories**
 
-**This tool does not create a recolor base for you automatically.** It speeds up the process by changing 95%+ of the color values needed. However, you still need to identify the correct .decl files to change, and manually review & test afterwards.
-
-Some color values may not be changed automatically due to ambiguous or inconsistent usage in the .decl files. If you don't see the expected results, you should review the .decl files to see if any color values were skipped. 
+```
+bfg_stun
+ice_bomb_freeze
+on_fire
+plasma_stun
+```
 
 ## Usage 
 
-This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files.
+This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. It **can not** be used on a .zip file. You must extract the files first.
 
 If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
 
@@ -106,5 +118,5 @@ If you have suggestions for improving the tool, please join the DOOM 2016+ Moddi
 ## Credits:
 
 - Thank you to PowerBall253 (https://github.com/PowerBall253) for helping test the Linux version.
-- Thank you to Bez and Macy for testing the Windows version, and advice/suggestions to improve the tool.
+- Thank you to Bez and Todema for testing the Windows versions, and advice/suggestions to improve the tool.
 - DOOM 2016+ Modding community on Discord: https://discord.gg/ymRvQaU.
