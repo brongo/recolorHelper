@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Added config option to ignore color channels (example: set only "red" channels, ignore green and blue).
 - Added config option to remove unmodified files.
 - Added config options to target specific fx/character and fx/demon_player groups.
+- Added support for fx/character and fx/demon_player files.
 - Added support for FX_SOUND color used by plasma rifle.
 - Added support for "valueVec4" colors used by plasma rifle heat blast mod.
 - Additional error handling and safety checks throughout program.
