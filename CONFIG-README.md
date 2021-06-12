@@ -1,6 +1,6 @@
 # Configuration File
 
-RecolorHelper v0.3 includes a new configuration file "recolor.cfg" which can be edited using a standard text editor (notepad++ is recommended).
+RecolorHelper v0.3 includes a configuration file "recolor.cfg" which can be edited using a standard text editor (notepad++ is recommended).
 
 The default file looks like this:
 
@@ -27,8 +27,8 @@ deleteUnmodifiedFiles = false;
 
 ## Editing the Configuration File
 
-- Lines starting with "#" are considered commented and will be skipped.
-- All lines that are not commented **MUST** end with a semicolon (;) or the program will error.
+- Lines starting with "#" are comments and will be skipped.
+- All lines that are not comments **MUST** end with a semicolon (;) or the program will error.
 
 The variables that can be changed are:
 
@@ -51,7 +51,7 @@ color1 = 1;
 color2 = 0;
 color3 = 0;
 ```
-This configuration would set all the red channels to 100% (1), while setting green and blue channels zero. It would make everything bright red.
+This configuration would set all the red channels to 1, while setting green and blue channels to 0. It would make everything bright red.
 
 **Please note the valid range for a color is from 0.0 - 1.0. Any values above 1 will result in an error message.** If you aren't sure what color to use, you can do a Google search for "RGB color picker." Most color pickers will have a value from 0-255 for each channel (r, g, b). To convert this to the format used by the game, simply divide by 255. For example, if the color picker gives you a value of 100. The value used in the game is: `(100/255) = 0.3921568`.
 
@@ -74,6 +74,11 @@ This tool will not delete any files by default. However, you can enable this opt
 deleteUnmodifiedFiles = true;
 ```
 
+The name of this setting isn't quite accurate. What is *really* does is delete any files that don't contain color values recognized by the tool. It also will not delete **anything** in the fx/character or fx/demon_player folder, unless using `specialSearchType` settings discussed below. If those values aren't set, the tool skips this folder entirely and will not delete them.
+
+Sometimes a file will not be modified, but also won't be deleted. For example, if you run the program twice with the same settings, *technically* the 2nd pass won't change anything, but it will not delete your files. This is done as a safety measure to prevent accidental deletions.
+
+If using this setting, any empty directories will also be removed.
 
 ## Special Search Types
 
