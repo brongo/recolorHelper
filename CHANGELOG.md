@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Added support for "valueVec4" colors used by plasma rifle heat blast mod.
 - Additional error handling and safety checks throughout program.
 - Significant code refactor for maintainability.
+- Windows & Linux codebases are merged. Program can be compiled on either platform.
 
 ## [0.2.0] - 2021-05-23
 
@@ -47,7 +48,7 @@ All notable changes to this project will be documented in this file.
   9. emissiveMaskColor2
   ```
 - Added multiple error checks and error messages.
-- Added small delay before closing program, so user has time to read console output. (Windows only)
+- Added small delay before closing program, so user has time to read console output in Windows.
 - Fixed a bug that could cause both xyz and rgb values to be printed in some cases.
 - Fixed a bug that could cause some FX values to be skipped.
 
