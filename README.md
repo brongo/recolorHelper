@@ -76,7 +76,7 @@ initialColor
 gradient
 ```
 
-Target specific color groups in fx/character and fx/demon_player. **Files must be in these directories**
+Specific color groups in fx/character and fx/demon_player, if set via recolor.cfg. **Files must be in fx/character or fx/demon_player directories**
 
 ```
 bfg_stun
