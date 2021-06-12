@@ -15,9 +15,7 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 
 ## What This Tool Does
 
-The tool will read & edit files with the .decl file extension. It does not read any other type of file. It can be used on a *single* .decl file, or a folder containing *multiple* .decl files. **It can not be used on a .zip folder.**
-
-Within a .decl file, the tool will search for specific color values and change them as follows:
+The tool will read & edit files with the .decl file extension. It does not read any other type of file. Within a .decl file, the tool will search for specific color values and change them as follows:
 
 ```
 r = 0.0001;     // or "x"
@@ -27,7 +25,7 @@ b = 0.000001;   // or "z"
 
 Alpha values ("a" or "w") will not be changed.
 
-**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file, which should be in the same folder as recolorHelper.exe.
+**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file.
 
 ## Usage 
 
