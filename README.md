@@ -8,9 +8,9 @@ __*Important:*__ Make sure you have a backup of your .decl files. This tool does
 
 Now includes a configuration file (recolor.cfg) to allow for easy customization of the recolor program. The configuration options allow you to:
 
-- Set any color values you want (instead of the default 0.0001 for recolor bases).
-- Ignore color channels (example: set only "red" channels, ignore green and blue).
-- Automatically remove unneeded files, and delete empty folders.
+- Set colors to any value (instead of the default 0.0001 for recolor bases).
+- Ignore color channels (e.g. set only "red" channels, ignore green and blue).
+- Automatically remove unneeded files and delete empty folders.
 - Target specific colors in fx/character and fx/demon_player groups (for example, changing only the "on_fire" effects and leave the rest alone).
 
 ## What This Tool Does
