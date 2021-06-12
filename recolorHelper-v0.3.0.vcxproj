@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>recolorHelper;$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -144,17 +145,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DeclReadWrite.cpp" />
-    <ClCompile Include="RecolorHelper.cpp" />
-    <ClCompile Include="DeclFile.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="recolorHelper\DeclReadWrite.cpp" />
+    <ClCompile Include="recolorHelper\RecolorHelper.cpp" />
+    <ClCompile Include="recolorHelper\DeclFile.cpp" />
+    <ClCompile Include="recolorHelper\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="DeclFile.h" />
-    <ClInclude Include="DeclReadWrite.h" />
-    <ClInclude Include="RecolorHelper.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="recolorHelper\Config.h" />
+    <ClInclude Include="recolorHelper\DeclFile.h" />
+    <ClInclude Include="recolorHelper\DeclReadWrite.h" />
+    <ClInclude Include="recolorHelper\RecolorHelper.h" />
+    <ClInclude Include="recolorHelper\Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
