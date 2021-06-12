@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Added config options to target specific fx/character and fx/demon_player groups.
 - Added support for FX_SOUND color used by plasma rifle.
 - Added support for "valueVec4" colors used by plasma rifle heat blast mod.
-- Added additional error handling and safety checks throughout program.
+- Additional error handling and safety checks throughout program.
 - Significant code refactoring for maintainability.
 
 ## [0.2.0] - 2021-05-23
