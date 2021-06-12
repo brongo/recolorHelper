@@ -53,7 +53,6 @@ color1 = 1;
 color2 = 0;
 color3 = 0;
 ```
-**color1, color2, and color3 are the names of the setting. DO NOT CHANGE THESE.**
 
 This configuration would set all the red channels to 1, while setting green and blue channels to 0. It would make everything bright red.
 
