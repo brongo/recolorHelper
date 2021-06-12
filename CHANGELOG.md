@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2021-06-12
+
+- Added config file (recolor.cfg), for users to set custom config options.
+- Added config option for custom color values, set via config file.
+- Added config option to ignore color channels (example: set only "red" channels, ignore green and blue).
+- Added config option to remove unmodified files.
+- Added config options to target specific fx/character and fx/demon_player groups.
+- Added support for FX_SOUND color used by plasma rifle.
+- Added support for "valueVec4" colors used by plasma rifle heat blast mod.
+- Additional error handling and safety checks throughout program.
+- Significant code refactor for maintainability.
+
 ## [0.2.0] - 2021-05-23
 
 - Added support for **FX types:** 

@@ -1,16 +1,22 @@
-# recolorHelper v0.2 by SamPT
+# recolorHelper v0.3 by SamPT
 
-recolorHelper is a tool for creating recolor bases for DOOM Eternal. 
-
-It will automatically reset .decl color values to 0.0001, eliminating the tedious work of going through each .decl file and changing these line-by-line. **Some manual work is still required.** See the section titled "*What this tool DOES NOT do.*"
+recolorHelper is a tool for mass-editing color values in DOOM Eternal. When used on a folder containing .decl files, it will change all color values to the colors you specify. It can also remove any unneeded files automatically. 
 
 __*Important:*__ Make sure you have a backup of your .decl files. This tool does not take backups. It will directly overwrite the files it is used on. I do not take responsibility for any file corruption or loss of data that may occur.
 
+### \*\* New in Version 0.3 \*\*
+
+Now includes a configuration file (recolor.cfg) to allow for easy customization of the recolor program. The configuration options allow you to:
+
+- Set colors to any value (instead of the default 0.0001 for recolor bases).
+- Ignore color channels (e.g. set only "red" channels, ignore green and blue).
+- Automatically remove unneeded files and delete empty folders.
+- Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
+
+&nbsp;
 ## What This Tool Does
 
-The tool will read & edit files with the .decl file extension. It does not read any other type of file.
-
-Within a .decl file, the tool will search for specific color values and change them as follows:
+The tool will read & edit files with the .decl file extension. It does not read any other type of file. Within a .decl file, the tool will search for specific color values and change them as follows:
 
 ```
 r = 0.0001;     // or "x"
@@ -20,7 +26,34 @@ b = 0.000001;   // or "z"
 
 Alpha values ("a" or "w") will not be changed.
 
-### Supported color types:
+**New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file.
+
+&nbsp;
+## Usage 
+
+This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. **It can not be used on a .zip folder.** You must extract the files first.
+
+If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
+
+### Option 1: Drag & Drop
+
+1. Drag & drop the .decl file -or- folder you want to modify onto "recolorHelper.exe"
+2. Follow the instructions in the command prompt.
+
+### Option 2: Command Line
+ 
+```
+recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
+recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
+```
+
+&nbsp;
+## Customizing the Config File ##
+
+The configuration file is explained in a separate documentation file. See here:
+
+&nbsp;
+## Supported color types:
 
 To avoid changing colors that *should not* be changed, the tool operates only on specific color types:
 
@@ -53,6 +86,7 @@ Color types with special handling:
 ```
 FX_LIGHT         // changes all color values *except* for "ambient_light"
 FX_RENDERPARM    // ignores these values *except* for "fire_primary" - buffs/etc will not be changed.
+FX_SOUND         // ignores these values *except* for "fire_primary"
 FX_PARTICLE      // see below
 ```
 
@@ -65,30 +99,16 @@ initialColor
 gradient
 ```
 
-## What This Tool DOES NOT Do
+Specific color groups in fx/character and fx/demon_player, if set via recolor.cfg. **Files must be in fx/character or fx/demon_player directories**
 
-**This tool does not create a recolor base for you automatically.** It speeds up the process by changing 95%+ of the color values needed. However, you still need to identify the correct .decl files to change, and manually review & test afterwards.
-
-Some color values may not be changed automatically due to ambiguous or inconsistent usage in the .decl files. If you don't see the expected results, you should review the .decl files to see if any color values were skipped. 
-
-## Usage 
-
-This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files.
-
-If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
-
-### Option 1: Drag & Drop
-
-1. Drag & drop the .decl file -or- folder you want to modify onto "recolorHelper.exe"
-2. Follow the instructions in the command prompt.
-
-### Option 2: Command Line
- 
 ```
-recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
-recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
+bfg_stun
+ice_bomb_freeze
+on_fire
+plasma_stun
 ```
 
+&nbsp;
 ## Troubleshooting
 
 The .exe file may trigger an anti-virus warning, but it is safe to download and run.
@@ -97,12 +117,14 @@ The .exe file may trigger an anti-virus warning, but it is safe to download and 
 
 If you are unable to resolve the issue, please make a note of the exact error message you received and send details to @SamPT#9513 on Discord. 
 
+&nbsp;
 ## Feedback:
 
 If you have suggestions for improving the tool, please join the DOOM 2016+ Modding server on Discord, and send a message to @SamPT#9513. The Discord link is here: https://discord.gg/ymRvQaU.
 
+&nbsp;
 ## Credits:
 
 - Thank you to PowerBall253 (https://github.com/PowerBall253) for helping test the Linux version.
-- Thank you to Bez and Macy for testing the Windows version, and advice/suggestions to improve the tool.
+- Thank you to Bez and Todema for testing the Windows versions, and advice/suggestions to improve the tool.
 - DOOM 2016+ Modding community on Discord: https://discord.gg/ymRvQaU.
