@@ -4,6 +4,7 @@ recolorHelper is a tool for mass-editing color values in DOOM Eternal. When used
 
 __*Important:*__ Make sure you have a backup of your .decl files. This tool does not take backups. It will directly overwrite the files it is used on. I do not take responsibility for any file corruption or loss of data that may occur.
 
+
 ## \*\* New in Version 0.3 \*\*
 
 Now includes a configuration file (recolor.cfg) to allow for easy customization of the recolor program. The configuration options allow you to:
@@ -12,6 +13,7 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Ignore color channels (e.g. set only "red" channels, ignore green and blue).
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
+
 
 ## What This Tool Does
 
@@ -26,6 +28,7 @@ b = 0.000001;   // or "z"
 Alpha values ("a" or "w") will not be changed.
 
 **New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file.
+
 
 ## Usage 
 
@@ -44,6 +47,7 @@ If used on a folder/directory, it will search for .decl files **recursively**. T
 recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
 recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
 ```
+
 
 ## Customizing the Config File ##
 
@@ -105,6 +109,7 @@ on_fire
 plasma_stun
 ```
 
+
 ## Troubleshooting
 
 The .exe file may trigger an anti-virus warning, but it is safe to download and run.
@@ -113,9 +118,11 @@ The .exe file may trigger an anti-virus warning, but it is safe to download and 
 
 If you are unable to resolve the issue, please make a note of the exact error message you received and send details to @SamPT#9513 on Discord. 
 
+
 ## Feedback:
 
 If you have suggestions for improving the tool, please join the DOOM 2016+ Modding server on Discord, and send a message to @SamPT#9513. The Discord link is here: https://discord.gg/ymRvQaU.
+
 
 ## Credits:
 
