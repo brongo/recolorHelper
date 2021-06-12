@@ -50,7 +50,7 @@ recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* 
 The configuration file is explained in a separate documentation file. See here:
 
 
-### Supported color types:
+## Supported color types:
 
 To avoid changing colors that *should not* be changed, the tool operates only on specific color types:
 
