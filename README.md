@@ -29,6 +29,28 @@ Alpha values ("a" or "w") will not be changed.
 
 **New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file, which should be in the same folder as recolorHelper.exe.
 
+## Usage 
+
+This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. **It can not be used on a .zip folder.** You must extract the files first.
+
+If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
+
+### Option 1: Drag & Drop
+
+1. Drag & drop the .decl file -or- folder you want to modify onto "recolorHelper.exe"
+2. Follow the instructions in the command prompt.
+
+### Option 2: Command Line
+ 
+```
+recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
+recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
+```
+
+## Customizing the Config File ##
+
+The configuration file is explained in a separate documentation file. See here:
+
 
 ### Supported color types:
 
@@ -84,28 +106,6 @@ ice_bomb_freeze
 on_fire
 plasma_stun
 ```
-
-## Usage 
-
-This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. **It can not be used on a .zip folder.** You must extract the files first.
-
-If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
-
-### Option 1: Drag & Drop
-
-1. Drag & drop the .decl file -or- folder you want to modify onto "recolorHelper.exe"
-2. Follow the instructions in the command prompt.
-
-### Option 2: Command Line
- 
-```
-recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
-recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
-```
-
-## Customizing the Config File ##
-
-The configuration file is explained in a separate documentation file. See here:
 
 ## Troubleshooting
 
