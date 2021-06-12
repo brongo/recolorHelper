@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.3.0] - 2021-06-08
+## [0.3.0] - 2021-06-12
 
 - Added config file (recolor.cfg), for users to set custom config options.
 - Added config option for custom color values, set via config file.
