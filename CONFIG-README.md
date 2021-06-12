@@ -10,8 +10,8 @@ The default file looks like this:
 #  Version 0.3.0 
 #  Released June 12 2021
 #
-#  DOCUMENTATION:
-#  https://github.com/brongo/recolorHelper/blob/main/README.md
+#  CONFIG DOCUMENTATION:
+#  https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
 #
 #  MAKE CHANGES BELOW
 #
