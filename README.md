@@ -14,7 +14,7 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
 
-
+&nbsp;
 ## What This Tool Does
 
 The tool will read & edit files with the .decl file extension. It does not read any other type of file. Within a .decl file, the tool will search for specific color values and change them as follows:
@@ -29,7 +29,7 @@ Alpha values ("a" or "w") will not be changed.
 
 **New with version 0.3:** You can override these default colors by editing the "recolor.cfg" file.
 
-
+&nbsp;
 ## Usage 
 
 This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. **It can not be used on a .zip folder.** You must extract the files first.
@@ -48,12 +48,12 @@ recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a sing
 recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
 ```
 
-
+&nbsp;
 ## Customizing the Config File ##
 
 The configuration file is explained in a separate documentation file. See here:
 
-
+&nbsp;
 ## Supported color types:
 
 To avoid changing colors that *should not* be changed, the tool operates only on specific color types:
@@ -109,7 +109,7 @@ on_fire
 plasma_stun
 ```
 
-
+&nbsp;
 ## Troubleshooting
 
 The .exe file may trigger an anti-virus warning, but it is safe to download and run.
@@ -118,12 +118,12 @@ The .exe file may trigger an anti-virus warning, but it is safe to download and 
 
 If you are unable to resolve the issue, please make a note of the exact error message you received and send details to @SamPT#9513 on Discord. 
 
-
+&nbsp;
 ## Feedback:
 
 If you have suggestions for improving the tool, please join the DOOM 2016+ Modding server on Discord, and send a message to @SamPT#9513. The Discord link is here: https://discord.gg/ymRvQaU.
 
-
+&nbsp;
 ## Credits:
 
 - Thank you to PowerBall253 (https://github.com/PowerBall253) for helping test the Linux version.
