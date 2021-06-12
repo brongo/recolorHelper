@@ -11,11 +11,11 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Set colors to any value (instead of the default 0.0001 for recolor bases).
 - Ignore color channels (e.g. set only "red" channels, ignore green and blue).
 - Automatically remove unneeded files and delete empty folders.
-- Target specific colors in fx/character and fx/demon_player groups (for example, changing only the "on_fire" effects and leave the rest alone).
+- Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
 
 ## What This Tool Does
 
-The tool will read & edit files with the .decl file extension. It does not read any other type of file. It can be used on a single .decl file, or a folder containing multiple .decl files. **It can not be used on a .zip folder.**
+The tool will read & edit files with the .decl file extension. It does not read any other type of file. It can be used on a *single* .decl file, or a folder containing *multiple* .decl files. **It can not be used on a .zip folder.**
 
 Within a .decl file, the tool will search for specific color values and change them as follows:
 
@@ -87,7 +87,7 @@ plasma_stun
 
 ## Usage 
 
-This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. It **can not** be used on a .zip file. You must extract the files first.
+This tool can operate on a either a *single* .decl file, or a folder/directory containing *multiple* .decl files. **It can not be used on a .zip folder.** You must extract the files first.
 
 If used on a folder/directory, it will search for .decl files **recursively**. This means it will operate on .decl files in that folder, and **any other folder within it**. This makes it easy to keep .decl files in the same folder hierarchy used by the game. 
 
@@ -102,6 +102,10 @@ If used on a folder/directory, it will search for .decl files **recursively**. T
 recolorHelper.exe "D:\DoomEternal\DeclFolder\chaingun.decl"   // Modifies a single .decl file.
 recolorHelper.exe "D:\DoomEternal\DeclFolder"                 // Modifies *ALL* .decl files in this directory.
 ```
+
+## Customizing the Config File ##
+
+The configuration file is explained in a separate documentation file. See here:
 
 ## Troubleshooting
 
