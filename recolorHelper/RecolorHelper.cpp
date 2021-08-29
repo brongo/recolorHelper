@@ -494,7 +494,7 @@ int main(int argc, char* argv[])
     #endif
 
     printf("\n");
-    printf("RecolorHelper-v0.3.0 by SamPT\n\n");
+    printf("RecolorHelper-v0.3.1 by SamPT\n\n");
     printf("Example usage:\n\n");
     printf("  %s \"%s\" - Modify a single.decl file.\n", exampleCommand.c_str(), examplePath1.c_str());
     printf("  %s \"%s\" - Modify *ALL* .decl files in this directory.\n\n", exampleCommand.c_str(), examplePath2.c_str());
