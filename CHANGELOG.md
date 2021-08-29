@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2021-08-29
+
+- Fixed a bug that caused "Config file is missing one or more color settings" error.
+
 ## [0.3.0] - 2021-06-12
 
 - Added config file (recolor.cfg), for users to set custom config options.
