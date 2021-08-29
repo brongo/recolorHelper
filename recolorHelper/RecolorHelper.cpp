@@ -3,16 +3,24 @@ using namespace RecolorTool;
 
 namespace RecolorTool
 {
+
     // read user-defined configuration
     DeclFile RecolorHelper::openConfigFile()
     {
         DeclFile configFile;
         const char* configFileName = "recolor.cfg";
+
+        #ifdef _WIN32
+        fs::path configPath = getExeDirectoryTest();
+        configPath = configPath / "recolor.cfg";
+        #else       
         fs::path configPath = fs::current_path() / "recolor.cfg";
+        #endif
+
         try
         {
             DeclReader declReader;
-            declReader.openFileStream(configFileName);
+            declReader.openFileStream(configPath.string().c_str());
             configFile = declReader.readDeclFile();
             declReader.closeFileStream();
         }
@@ -509,6 +517,7 @@ int main(int argc, char* argv[])
         printf("ERROR: too many parameters passed in.\n");
         printf("To use this program on multiple files, place all files in a single folder and try again.\n");
         closeProgramAfterSleep(2000);
+        closeProgramWIN32();
         return 1;
     }
 
@@ -521,6 +530,7 @@ int main(int argc, char* argv[])
     if (!recolorHelper.configIsValid(configFile))
     {
         closeProgramAfterSleep(2000);
+        closeProgramWIN32();
         return 0;
     }
 
@@ -541,9 +551,11 @@ int main(int argc, char* argv[])
         printf("\n\n");
         printf("Operation completed successfully.\n");
         closeProgramAfterSleep(1600);
+        closeProgramWIN32();
         return 0;
     }
 
     closeProgramAfterSleep(2000);
+    closeProgramWIN32();
     return 1;
 }

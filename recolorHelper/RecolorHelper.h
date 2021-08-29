@@ -40,7 +40,7 @@ namespace RecolorTool
             Config config;
             FileList fileList;
             void setInputPath(std::string inputPath) { _inputPath = inputPath; };
-
+            
             // read user-defined configuration
             DeclFile openConfigFile();
             DeclFile configNormalizeFormatting(DeclFile configFile);

@@ -8,6 +8,8 @@
 
 #ifdef _WIN32
 #include <conio.h>
+#include <Windows.h>
+#include <winbase.h>
 #endif
 
 namespace fs = std::filesystem;
@@ -23,5 +25,6 @@ namespace RecolorTool
 
 	#ifdef _WIN32
 	void closeProgramWIN32();
+	std::string getExeDirectoryTest();
 	#endif
 }
