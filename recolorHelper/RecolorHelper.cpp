@@ -17,19 +17,16 @@ namespace RecolorTool
         fs::path configPath = fs::current_path() / "recolor.cfg";
         #endif
 
-        try
-        {
-            DeclReader declReader;
-            declReader.openFileStream(configPath.string().c_str());
-            configFile = declReader.readDeclFile();
-            declReader.closeFileStream();
-        }
-        catch (...)
+        DeclReader declReader;
+        if (!declReader.openFileStream(configPath.string().c_str()))
         {
             printf("\n\n");
-            printf("ERROR: Unable to read configuration file.\n");
+            printf("ERROR: Unable to locate configuration file. Please make sure the recolor.cfg file is in the same directory as recolorHelper.exe. \n");
             _invalidConfig = 1;
         }
+        configFile = declReader.readDeclFile();
+        declReader.closeFileStream();        
+
         return configFile;
     }
     DeclFile RecolorHelper::configNormalizeFormatting(DeclFile configFile)
