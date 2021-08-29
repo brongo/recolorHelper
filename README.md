@@ -1,4 +1,4 @@
-# recolorHelper v0.3 by SamPT
+# recolorHelper v0.3.1 by SamPT
 
 recolorHelper is a tool for mass-editing color values in DOOM Eternal. When used on a folder containing .decl files, it will change all color values to the colors you specify. It can also remove any unneeded files automatically. 
 
@@ -12,7 +12,6 @@ Now includes a configuration file (recolor.cfg) to allow for easy customization 
 - Ignore color channels (e.g. set only "red" channels, ignore green and blue).
 - Automatically remove unneeded files and delete empty folders.
 - Target specific fx groups in fx/character and fx/demon_player (e.g. change "on_fire" effects and skip others).
-- Full config documentation here: https://github.com/brongo/recolorHelper/blob/main/CONFIG-README.md
 
 &nbsp;
 ## What This Tool Does
@@ -127,5 +126,5 @@ If you have suggestions for improving the tool, please join the DOOM 2016+ Moddi
 ## Credits:
 
 - Thank you to PowerBall253 (https://github.com/PowerBall253) for helping test the Linux version.
-- Thank you to Bez and Todema for testing the Windows versions, and advice/suggestions to improve the tool.
+- Thank you to Bezellik and Todema for testing the Windows versions, and advice/suggestions to improve the tool.
 - DOOM 2016+ Modding community on Discord: https://discord.gg/ymRvQaU.
